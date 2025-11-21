@@ -98,30 +98,26 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     try {
       print('\n🚀 Sending: $message');
       
-      // Send the message
+      // Send the message - response is Map<String, dynamic>
       final response = await _apiService.sendChatMessage(message);
       
       print('✅ Got response: $response');
       
-      // Get the AI's reply - try all possible field names
+      // Get the AI's reply - handle Map response properly
       String botReply = 'Sorry, I couldn\'t understand that.';
       
-      if (response is Map<String, dynamic>) {
-        // Try different possible response field names
-        botReply = response['response'] ?? 
-                   response['text'] ?? 
-                   response['message'] ?? 
-                   response['content'] ?? 
-                   response['reply'] ?? 
-                   response['answer'] ??
-                   response['data'] ??
-                   response.values.firstWhere(
-                     (v) => v is String && v.isNotEmpty, 
-                     orElse: () => 'No response from server'
-                   );
-      } else if (response is String) {
-        botReply = response;
-      }
+      // Try different possible response field names
+      botReply = response['response']?.toString() ?? 
+                 response['text']?.toString() ?? 
+                 response['message']?.toString() ?? 
+                 response['content']?.toString() ?? 
+                 response['reply']?.toString() ?? 
+                 response['answer']?.toString() ??
+                 response['data']?.toString() ??
+                 response.values.firstWhere(
+                   (v) => v is String && v.isNotEmpty, 
+                   orElse: () => 'No response from server'
+                 ).toString();
       
       print('💬 Bot says: $botReply');
       
