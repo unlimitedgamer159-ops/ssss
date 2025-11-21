@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace "com.example.stremniapp"
-    compileSdk 34
+    compileSdk 36  // CHANGED from 34 to 36
 
     defaultConfig {
         applicationId "com.example.stremniapp"
         minSdkVersion 24
-        targetSdkVersion 34
+        targetSdkVersion 34  // Keep targetSdk at 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
