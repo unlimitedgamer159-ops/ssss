@@ -39,7 +39,7 @@ class DigitalBodyguardScreen extends StatelessWidget {
 }
 
 class AppRouter {
-  // Route names
+  // Route names - Must be compile-time constants
   static const String voice = '/voice';
   static const String home = '/home';
   static const String chat = '/chat';
@@ -48,7 +48,7 @@ class AppRouter {
   static const String autoTask = '/auto_task';
   static const String bodyguard = '/bodyguard';
   static const String keyboard = '/keyboard';
-  static const String settings = '/settings';  // NEW
+  static const String settings = '/settings';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget screen;
@@ -86,7 +86,7 @@ class AppRouter {
         screen = const CustomKeyboardScreen();
         break;
         
-      case settings:  // NEW
+      case settings:
         screen = const SettingsScreen();
         break;
         
