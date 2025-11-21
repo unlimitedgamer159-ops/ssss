@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace "com.example.stremniapp"
-    compileSdk 36  // CHANGED from 34 to 36
+    compileSdk 35  // CHANGED from 34 to 36
 
     defaultConfig {
         applicationId "com.example.stremniapp"
