@@ -39,54 +39,54 @@ class DigitalBodyguardScreen extends StatelessWidget {
 }
 
 class AppRouter {
-  // Route names - Must be compile-time constants
-  static const String voice = '/voice';
-  static const String home = '/home';
-  static const String chat = '/chat';
-  static const String analyzer = '/analyzer';
-  static const String systemOverlay = '/system_overlay';
-  static const String autoTask = '/auto_task';
-  static const String bodyguard = '/bodyguard';
-  static const String keyboard = '/keyboard';
-  static const String settings = '/settings';
+  // Route names as static constants - but NOT const (to fix the switch case error)
+  static final String voice = '/voice';
+  static final String home = '/home';
+  static final String chat = '/chat';
+  static final String analyzer = '/analyzer';
+  static final String systemOverlay = '/system_overlay';
+  static final String autoTask = '/auto_task';
+  static final String bodyguard = '/bodyguard';
+  static final String keyboard = '/keyboard';
+  static final String settings = '/settings';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget screen;
     
     switch (settings.name) {
-      case voice:
+      case '/voice':
         screen = const VoiceControlScreen();
         break;
         
-      case home:
+      case '/home':
         screen = const HomeScreen();
         break;
         
-      case chat:
+      case '/chat':
         screen = const ChatbotScreen();
         break;
         
-      case analyzer:
+      case '/analyzer':
         screen = const ScreenAnalyzerScreen();
         break;
         
-      case systemOverlay:
+      case '/system_overlay':
         screen = const SystemOverlayScreen();
         break;
         
-      case autoTask:
+      case '/auto_task':
         screen = const AutoTaskScreen();
         break;
         
-      case bodyguard:
+      case '/bodyguard':
         screen = const DigitalBodyguardScreen();
         break;
         
-      case keyboard:
+      case '/keyboard':
         screen = const CustomKeyboardScreen();
         break;
         
-      case settings:
+      case '/settings':
         screen = const SettingsScreen();
         break;
         
