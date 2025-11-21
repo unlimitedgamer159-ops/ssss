@@ -10,7 +10,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  // Fixed: Changed from Map<String, PermissionStatus> to Map<Permission, PermissionStatus>
+  // FIXED: Changed to Map<Permission, PermissionStatus>
   Map<Permission, PermissionStatus> _permissionStatuses = {};
   bool _isLoading = false;
 
