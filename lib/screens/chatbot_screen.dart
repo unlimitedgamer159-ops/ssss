@@ -99,7 +99,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       print('\n🚀 Sending: $message');
       
       // Send the message - response is Map<String, dynamic>
-      final response = await _apiService.sendChatMessage(message);
+      final Map<String, dynamic> response = await _apiService.sendChatMessage(message);
       
       print('✅ Got response: $response');
       
@@ -107,17 +107,28 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       String botReply = 'Sorry, I couldn\'t understand that.';
       
       // Try different possible response field names
-      botReply = response['response']?.toString() ?? 
-                 response['text']?.toString() ?? 
-                 response['message']?.toString() ?? 
-                 response['content']?.toString() ?? 
-                 response['reply']?.toString() ?? 
-                 response['answer']?.toString() ??
-                 response['data']?.toString() ??
-                 response.values.firstWhere(
-                   (v) => v is String && v.isNotEmpty, 
-                   orElse: () => 'No response from server'
-                 ).toString();
+      if (response['response'] != null) {
+        botReply = response['response'].toString();
+      } else if (response['text'] != null) {
+        botReply = response['text'].toString();
+      } else if (response['message'] != null) {
+        botReply = response['message'].toString();
+      } else if (response['content'] != null) {
+        botReply = response['content'].toString();
+      } else if (response['reply'] != null) {
+        botReply = response['reply'].toString();
+      } else if (response['answer'] != null) {
+        botReply = response['answer'].toString();
+      } else if (response['data'] != null) {
+        botReply = response['data'].toString();
+      } else if (response.values.isNotEmpty) {
+        // Get first non-empty string value
+        final firstValue = response.values.firstWhere(
+          (v) => v is String && v.isNotEmpty, 
+          orElse: () => 'No response from server'
+        );
+        botReply = firstValue.toString();
+      }
       
       print('💬 Bot says: $botReply');
       
