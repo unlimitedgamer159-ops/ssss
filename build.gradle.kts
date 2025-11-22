@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.example.stremniapp"
         minSdk = 24
-        targetSdk = 34  // Keep target at 34 for compatibility
+        targetSdk = 35 // Keep target at 34 for compatibility
         versionCode = 1
         versionName = "1.0.0"
     }
