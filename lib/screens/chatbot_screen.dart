@@ -103,31 +103,19 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       
       print('✅ Got response: $response');
       
-      // Get the AI's reply - handle Map response properly
-      String botReply = 'Sorry, I couldn\'t understand that.';
+      // Get the AI's reply
+      String botReply = 'Sorry, I could not understand that.';
       
-      // Try different possible response field names
-      if (response['response'] != null) {
+      if (response.containsKey('response')) {
         botReply = response['response'].toString();
-      } else if (response['text'] != null) {
+      } else if (response.containsKey('text')) {
         botReply = response['text'].toString();
-      } else if (response['message'] != null) {
+      } else if (response.containsKey('message')) {
         botReply = response['message'].toString();
-      } else if (response['content'] != null) {
+      } else if (response.containsKey('content')) {
         botReply = response['content'].toString();
-      } else if (response['reply'] != null) {
+      } else if (response.containsKey('reply')) {
         botReply = response['reply'].toString();
-      } else if (response['answer'] != null) {
-        botReply = response['answer'].toString();
-      } else if (response['data'] != null) {
-        botReply = response['data'].toString();
-      } else if (response.values.isNotEmpty) {
-        // Get first non-empty string value
-        final firstValue = response.values.firstWhere(
-          (v) => v is String && v.isNotEmpty, 
-          orElse: () => 'No response from server'
-        );
-        botReply = firstValue.toString();
       }
       
       print('💬 Bot says: $botReply');
